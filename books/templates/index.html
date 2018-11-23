@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}
+    Home - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>Welcome to Selfless Books!</h1>
+    <p>Selfless books is a free source to acquire books.</p>
+    <h1>Directory</h1>
+    <div class="grid-x">
+        {% for book in books %}
+            <div class="cell large-6">
+                {% comment %} <div class="image-container"> {% endcomment %}
+                    <a href="{% url 'book_detail' slug=book.slug %}"><img class="thumbnail" src="{{ book.cover.url }}" alt=""></a>
+                {% comment %} </div> {% endcomment %}
+                    <h5><a href="{% url 'book_detail' slug=book.slug %}">{{ book.title }}</a></h5>
+                    <p>{{ book.description|truncatechars:600 }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

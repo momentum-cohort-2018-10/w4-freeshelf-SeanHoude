@@ -1,0 +1,33 @@
+body {
+    color: goldenrod;
+    background-color: rgb(33, 64, 105);
+    padding-left: 15px;
+}
+
+.nav-item {
+    display: inline-block;
+    padding: 0px 5px;
+    font-size: 1.1rem;
+    margin-bottom: 0px;
+    /* margin-top: 0px; */
+}
+
+.thumbnail {
+    height: 300px;
+}
+
+.top-bar {
+    margin-left: -15px;
+    background-color: rgba(0, 0, 0, 0.411)
+}
+
+a {
+    color: lightseagreen;
+}
+
+.image-container {
+    height: 350px;
+}
+.cell {
+    padding: 0 5px;
+}
