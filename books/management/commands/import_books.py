@@ -4,12 +4,14 @@ import os.path
 import csv
 from books.models import Book
 from django.core.files import File
+from django.template.defaultfilters import slugify
+
 
 def get_path(file):
-    return os.path.join(settings.BASE_DIR, 'initial_data', file)
+    return os.path.join(settings.BASE_DIR, 'books/management/commands/imports/', file)
 
 class Command(BaseCommand):
-    help = "Load books from book_data/books.csv"
+    help = "Import books from books.csv"
 
     def add_arguments(self, parser):
         # parser.add_argument('sample', nargs='+')
@@ -17,7 +19,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         print('Deleting books!')
-        # Book.objects.all().delete()
+        Book.objects.all().delete()
         with open(get_path('books.csv'), 'r') as file:
             reader = csv.DictReader(file)
             i = 0
@@ -25,11 +27,15 @@ class Command(BaseCommand):
                 i += 1
                 book = Book(
                     title=row['title'],
-                    description=row['description'],
-                    language=row['language'],
                     author=row['author'],
+                    series=row['series'],
+                    date=row['date'],
+                    slug=slugify(row['title']),
+                    is_fantasy=row['is_fantasy'],
+                    is_scifi=row['is_scifi'],
+                    is_horror=row['is_horror'],
+                    description=row['description'],
                 )
-                book.cover.save(row['image'],
-                    File(open(get_path(row['image']), 'rb')))
+                book.cover.save(row['cover'], File(open(get_path(row['cover']), 'rb')))
                 book.save()
         print(f'{i} books imported!')

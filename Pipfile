@@ -9,6 +9,7 @@ django-extensions = "*"
 werkzeug = "*"
 django-registration-redux = "==2.0"
 pillow = "*"
+"psycopg2-binary" = "*"
 
 [dev-packages]
 

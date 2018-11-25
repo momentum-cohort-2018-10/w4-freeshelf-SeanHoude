@@ -6,10 +6,18 @@
 {% block content %}
     <h1>Browse books{% if initial %} Starting with '{{ initial|title }}'{% endif %}</h1>
     {% for letter in 'abcdefghijklmnopqrstuvwxyz' %}
-    <a href="{% url 'browse_by_title' initial=letter %}"
+        <a href="{% url 'browse_by_title' initial=letter %}"
         {% if initial == letter %}class="active"{% endif %}>
         {{ letter|upper }}
-   </a>
+        </a>
+    {% endfor %}
+    <hr>
+    <h1>Categories</h1>
+    {% for cat in categories %}
+        <a href="{% url 'browse_by_category' category=cat %}"
+        {% if category == cat %}class="active"{% endif %}>
+        {{ cat }}
+        </a>
     {% endfor %}
     <hr>
     <ul>

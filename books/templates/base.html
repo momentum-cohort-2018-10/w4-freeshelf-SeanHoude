@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>
-        {% block title %}Selfless Books{% endblock title %}
+        {% block title %}Booktopia{% endblock title %}
     </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/css/foundation.min.css" integrity="sha256-1mcRjtAxlSjp6XJBgrBeeCORfBp/ppyX4tsvpQVCcpA= sha384-b5S5X654rX3Wo6z5/hnQ4GBmKuIJKMPwrJXn52ypjztlnDK2w9+9hSMBz/asy9Gw sha512-M1VveR2JGzpgWHb0elGqPTltHK3xbvu3Brgjfg4cg5ZNtyyApxw/45yHYsZ/rCVbfoO5MSZxB241wWq642jLtA==" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css'%}">
@@ -14,7 +14,7 @@
 </head>
 <body>
     <header>
-        <h1>Selfless Books</h1>
+        <h1>Booktopia</h1>
         <nav>
             <ul class="top-bar">
                 <div class="top-bar-left">
@@ -40,12 +40,19 @@
         </div>               
         <div class="cell auto">
             {% block sidebar %}
-                <ul>
-                    {% for book in books %}
-                        <li><a href="{% url 'book_detail' slug=book.slug %}">
-                            {{ book.title }}
-                        </a></li>
-                    {% endfor %}
+                {% comment %} <ul>
+                    <li><a href="{% url 'browse' %}">All books</a></li>
+                    <li><a href="{% url 'browse/fantasy' %}">Browse Fantasy Books</a></li>
+                    <li><a href="{% url 'browse/scifi' %}">Browse SciFi Books</a></li>
+                    <li><a href="{% url 'browse/horror' %}">Browse Horror Books</a></li>
+                     {% endcomment %}
+                    {% comment %} <ul>
+                        {% for book in books %}
+                            <li><a href="{% url 'book_detail' slug=book.slug %}">
+                                {{ book.title }}
+                            </a></li>
+                        {% endfor %}
+                    </ul> {% endcomment %}
                 </ul>
             {% endblock sidebar %}
         </div>

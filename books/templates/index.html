@@ -4,8 +4,9 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Welcome to Selfless Books!</h1>
-    <p>Selfless books is a free source to acquire books.</p>
+    <h1>Welcome to Booktopia!</h1>
+    <p>Please peruse some of my favorite reads!</p>
+    <p><a href="{% url 'create_book' %}">Add a book</a></p>
     <h1>Directory</h1>
     <div class="grid-x">
         {% for book in books %}

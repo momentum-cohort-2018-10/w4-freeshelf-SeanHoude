@@ -7,7 +7,7 @@
     <img src="{{ book.cover.url }}" alt="">
     <h1>{{ book.title }}</h1>
     <p>{{ book.description }}</p>
-    {% if creator == book.creator %}
+    {% if user == book.creator %}
         <p><a href="{% url 'edit_book' slug=book.slug %}">Edit me!</a></p>
     {% endif %}
 {% endblock content %}

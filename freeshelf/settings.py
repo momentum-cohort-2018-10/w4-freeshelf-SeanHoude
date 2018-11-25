@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
 
     # Third party apps:
     'django_extensions',
@@ -82,8 +83,13 @@ WSGI_APPLICATION = 'freeshelf.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': 'freeshelfdb',
+        'USER': 'postgres',
+        'PASSWORD': 'djangopy',
+        'HOST': 'localhost',
+        'PORT': '5432'
     }
 }
 
@@ -131,8 +137,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIR = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-ACCOUNT_ACTIVATION_DAYS = 7
 
+ACCOUNT_ACTIVATION_DAYS = 7
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'bludluzt2@gmail.com'
 EMAIL_HOST_USER = ''
