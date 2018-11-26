@@ -6,13 +6,13 @@
 {% block content %}
     <h1>Welcome to Booktopia!</h1>
     <p>Please peruse some of my favorite reads!</p>
-    <p><a href="{% url 'create_book' %}">Add a book</a></p>
+    <p><a href="{% url 'registration_create_book' %}">Add a book</a></p>
     <h1>Directory</h1>
     <div class="grid-x">
         {% for book in books %}
             <div class="cell large-6">
                 {% comment %} <div class="image-container"> {% endcomment %}
-                    <a href="{% url 'book_detail' slug=book.slug %}"><img class="thumbnail" src="{{ book.cover.url }}" alt=""></a>
+                    <a href="{% url 'book_detail' slug=book.slug %}"><img class="cover-thumb" src="{{ book.cover.url }}" alt=""></a>
                 {% comment %} </div> {% endcomment %}
                     <h5><a href="{% url 'book_detail' slug=book.slug %}">{{ book.title }}</a></h5>
                     <p>{{ book.description|truncatechars:600 }}</p>

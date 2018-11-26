@@ -31,9 +31,9 @@ class Command(BaseCommand):
                     series=row['series'],
                     date=row['date'],
                     slug=slugify(row['title']),
-                    is_fantasy=row['is_fantasy'],
-                    is_scifi=row['is_scifi'],
-                    is_horror=row['is_horror'],
+                    fantasy=row['fantasy'],
+                    scifi=row['scifi'],
+                    horror=row['horror'],
                     description=row['description'],
                 )
                 book.cover.save(row['cover'], File(open(get_path(row['cover']), 'rb')))

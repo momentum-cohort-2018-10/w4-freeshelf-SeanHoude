@@ -4,20 +4,22 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Browse books{% if initial %} Starting with '{{ initial|title }}'{% endif %}</h1>
+    <h3>Browse books {% if query|length == 0 or query|length > 1 %} by letter{% endif %}{% if query|length == 1 %} starting with '{{ query|title }}'{% endif %}</h3>
     {% for letter in 'abcdefghijklmnopqrstuvwxyz' %}
-        <a href="{% url 'browse_by_title' initial=letter %}"
-        {% if initial == letter %}class="active"{% endif %}>
+        <a href="{% url 'browse_by_title' query=letter %}"
+        {% if query == letter %}class="active"{% endif %}>
         {{ letter|upper }}
         </a>
     {% endfor %}
     <hr>
-    <h1>Categories</h1>
+    <h3>Browse{% if query|length > 1 %} {{ query }} books{% else %} categories{% endif %}</h3>
     {% for cat in categories %}
-        <a href="{% url 'browse_by_category' category=cat %}"
-        {% if category == cat %}class="active"{% endif %}>
-        {{ cat }}
-        </a>
+        <ul class="no-bullet">
+            <li class="no-bullet"><a href="{% url 'browse_by_title' query=cat %}"
+            {% if query == cat %}class="active"{% endif %}>
+            {{ cat|title }}
+            </a></li>
+        </ul>
     {% endfor %}
     <hr>
     <ul>

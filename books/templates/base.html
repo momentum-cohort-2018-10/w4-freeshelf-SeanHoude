@@ -40,19 +40,13 @@
         </div>               
         <div class="cell auto">
             {% block sidebar %}
-                {% comment %} <ul>
-                    <li><a href="{% url 'browse' %}">All books</a></li>
-                    <li><a href="{% url 'browse/fantasy' %}">Browse Fantasy Books</a></li>
-                    <li><a href="{% url 'browse/scifi' %}">Browse SciFi Books</a></li>
-                    <li><a href="{% url 'browse/horror' %}">Browse Horror Books</a></li>
-                     {% endcomment %}
-                    {% comment %} <ul>
-                        {% for book in books %}
-                            <li><a href="{% url 'book_detail' slug=book.slug %}">
-                                {{ book.title }}
-                            </a></li>
-                        {% endfor %}
-                    </ul> {% endcomment %}
+                <h3>All books</h3>
+                <ul>
+                    {% for book in all %}
+                        <li><a href="{% url 'book_detail' slug=book.slug %}">
+                            {{ book.title }} - {{ book.author}}
+                        </a></li>
+                    {% endfor %}
                 </ul>
             {% endblock sidebar %}
         </div>

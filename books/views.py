@@ -7,20 +7,32 @@ from django.http import HttpResponseRedirect
 from django.template.defaultfilters import slugify
 from django.core.mail import EmailMessage
 from django.template.loader import get_template
-from books.models import Book
+from django.views.generic import ListView, DetailView
+from books.models import Book, Comment
 from books.forms import BookForm, ContactForm
 
 
 # Create your views here.
 def index(request):
+    all = Book.objects.all().order_by('date')
     books = Book.objects.all()
     return render(request, 'index.html', {
-        'books': books
+        'all': all,
+        'books': books,
     })
 
+class BookListView(ListView):
+    context_object_name = 'books'
+    model = Book
+
+class BookDetailView(DetailView):
+    model = Book
+
 def book_detail(request, slug):
+    all = Book.objects.all().order_by('date')
     book = Book.objects.get(slug=slug)
     return render(request, 'books/book_detail.html', {
+        'all': all,
         'book': book,
     })
 
@@ -60,30 +72,30 @@ def create_book(request):
         'form': form,
     })
 
-def browse_by_title(request, initial=None):
-    if initial:
-        books = Book.objects.filter(title__istartswith=initial).order_by('title')
+def browse_by_title(request, query=None):
+ 
+    all = Book.objects.all().order_by('date')
+
+    if query == 'fantasy':
+        books = Book.objects.filter(fantasy=True)
+    elif query == 'scifi':
+        books = Book.objects.filter(scifi=True)
+    elif query == 'horror':
+        books = Book.objects.filter(horror=True)
+    elif query:
+        books = Book.objects.filter(title__istartswith=query).order_by('title')
     else:
         books = Book.objects.all().order_by('title')
 
-    return render(request, 'search.html', {
-        'books': books,
-        'initial': initial,
-    })
-
-def browse_by_category(request, category):
-    if category:
-        books = Book.objects.filter(category=True)
-    else:
-        books = Book.objects.all().order_by('title')
-
-    categories = ('is_fantasy', 'is_scifi', 'is_horror')
+    categories = ('fantasy', 'scifi', 'horror')
 
     return render(request, 'search.html', {
+        'all': all,
+        'query': query,
         'books': books,
-        'category': category,
-        'categories': categories
+        'categories': categories,
     })
+
 
 def contact(request):
     form_class = ContactForm

@@ -12,7 +12,18 @@ body {
     /* margin-top: 0px; */
 }
 
-.thumbnail {
+.active {
+    color: rgb(2, 228, 160);
+    /* font-size: 2rem; */
+}
+
+img:hover {
+    -moz-box-shadow: 0 0 10px #ccc;
+    -webkit-box-shadow: 0 0 10px #ccc;
+    box-shadow: 0 0 10px #ccc;
+}
+
+.cover-thumb {
     height: 300px;
 }
 
@@ -21,8 +32,14 @@ body {
     background-color: rgba(0, 0, 0, 0.411)
 }
 
+
 a {
     color: lightseagreen;
+}
+
+ul {
+    list-style-type: none;
+    list-style: none;
 }
 
 .image-container {
