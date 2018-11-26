@@ -6,6 +6,11 @@
 {% block content %}
     <img src="{{ book.cover.url }}" alt="">
     <h1>{{ book.title }}</h1>
+    <p>{{ book.author }}</p>
+    {% if book.series == null %}<p>{{ book.series }}</p>{% endif %}
+    <p>Published {{ book.date }}</p>
+    <p>Favorited {{ book.favorited }} times</p>
+    <p>{{ book. }}</p>
     <p>{{ book.description }}</p>
     {% if user == book.creator %}
         <p><a href="{% url 'edit_book' slug=book.slug %}">Edit me!</a></p>

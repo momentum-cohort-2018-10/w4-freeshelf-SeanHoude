@@ -73,7 +73,7 @@ def create_book(request):
     })
 
 def browse_by_title(request, query=None):
- 
+
     all = Book.objects.all().order_by('date')
 
     if query == 'fantasy':

@@ -15,6 +15,8 @@
                     <a href="{% url 'book_detail' slug=book.slug %}"><img class="cover-thumb" src="{{ book.cover.url }}" alt=""></a>
                 {% comment %} </div> {% endcomment %}
                     <h5><a href="{% url 'book_detail' slug=book.slug %}">{{ book.title }}</a></h5>
+                    <p>by {{ book.author }}</p>
+                    <p>{{ book. }}</p>
                     <p>{{ book.description|truncatechars:600 }}</p>
             </div>
         {% endfor %}

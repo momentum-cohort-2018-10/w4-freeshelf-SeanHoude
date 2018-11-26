@@ -23,6 +23,18 @@ class Book(Timestamp):
     fantasy = models.BooleanField(default=False)
     scifi = models.BooleanField(default=False)
     horror = models.BooleanField(default=False)
+    # categories = get_categories()
+
+    def get_categories(self):
+        categories_list = []
+        if self.fantasy is True:
+            categories_list.append('fantasy')
+        if self.scifi is True:
+            categories_list.append('scifi')
+        if self.horror is True:
+            categories_list.append('horror')
+        return categories_list
+        
 
     def get_absolute_url(self):
         return "books/%s/" % self.slug
